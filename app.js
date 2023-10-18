@@ -1,6 +1,7 @@
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-document.getElementById("guardarDatos").addEventListener("click",(e) =>{
+document.getElementById("userDataForm").addEventListener("submit",(e) =>{
+    e.preventDefault()
 
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
@@ -22,6 +23,8 @@ document.getElementById("guardarDatos").addEventListener("click",(e) =>{
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
+    limpiarCampos();
+    mostrar();
 });
 
 function mostrar() {
@@ -46,4 +49,14 @@ function mostrar() {
         cards.appendChild(card);
     });
 }
+
+function limpiarCampos(){
+    document.getElementById("nombre").value="";
+    document.getElementById("apellido").value="";
+    document.getElementById("f_Nacimiento").value="";
+    document.getElementById("email").value="";
+    document.getElementById("genero").value="";
+    document.getElementById("foto").value="";
+}
+
 mostrar();
