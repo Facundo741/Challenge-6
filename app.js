@@ -1,5 +1,18 @@
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
+class Usuario{
+    constructor ( nombre, apellido, f_Nacimiento, email,genero,foto ){
+
+        this.nombre = nombre
+        this.apellido=apellido
+        this.f_Nacimiento = f_Nacimiento
+        this.email = email
+        this.genero = genero
+        this.foto = foto
+    }
+}
+
+
 document.getElementById("userDataForm").addEventListener("submit",(e) =>{
     e.preventDefault()
 
@@ -10,14 +23,7 @@ document.getElementById("userDataForm").addEventListener("submit",(e) =>{
     const genero = document.getElementById("genero").value;
     const foto = document.getElementById("foto").value;
 
-    const usuario = {
-        nombre,
-        apellido,
-        f_Nacimiento,
-        email,
-        genero,
-        foto,
-    };
+    const usuario = new Usuario(nombre,apellido,f_Nacimiento,email,genero,foto)
 
     usuarios.push(usuario);
 
