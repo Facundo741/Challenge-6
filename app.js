@@ -1,6 +1,20 @@
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-document.getElementById("guardarDatos").addEventListener("click",(e) =>{
+class Usuario{
+    constructor ( nombre, apellido, f_Nacimiento, email,genero,foto ){
+
+        this.nombre = nombre
+        this.apellido=apellido
+        this.f_Nacimiento = f_Nacimiento
+        this.email = email
+        this.genero = genero
+        this.foto = foto
+    }
+}
+
+
+document.getElementById("userDataForm").addEventListener("submit",(e) =>{
+    e.preventDefault()
 
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
@@ -9,19 +23,14 @@ document.getElementById("guardarDatos").addEventListener("click",(e) =>{
     const genero = document.getElementById("genero").value;
     const foto = document.getElementById("foto").value;
 
-    const usuario = {
-        nombre,
-        apellido,
-        f_Nacimiento,
-        email,
-        genero,
-        foto,
-    };
+    const usuario = new Usuario(nombre,apellido,f_Nacimiento,email,genero,foto)
 
     usuarios.push(usuario);
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
+    limpiarCampos();
+    mostrar();
 });
 
 function mostrar() {
@@ -46,4 +55,14 @@ function mostrar() {
         cards.appendChild(card);
     });
 }
+
+function limpiarCampos(){
+    document.getElementById("nombre").value="";
+    document.getElementById("apellido").value="";
+    document.getElementById("f_Nacimiento").value="";
+    document.getElementById("email").value="";
+    document.getElementById("genero").value="";
+    document.getElementById("foto").value="";
+}
+
 mostrar();
